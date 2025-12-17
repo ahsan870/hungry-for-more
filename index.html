@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hungry for More - Best Pizza in Tangail, Bangladesh</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <img src="logo.png" alt="Hungry for More" class="logo-img">
+            </div>
+            <nav class="nav" id="main-nav">
+                <a href="#home" onclick="closeMobileMenu()">Home</a>
+                <a href="#menu" onclick="closeMobileMenu()">Menu</a>
+                <a href="#about" onclick="closeMobileMenu()">About</a>
+                <a href="#contact" onclick="closeMobileMenu()">Contact</a>
+            </nav>
+            <div class="header-actions">
+                <div class="cart-icon" onclick="toggleCart()">
+                    🛒 <span id="cart-count">0</span>
+                </div>
+                <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h2>Delicious Pizza Made Fresh Daily</h2>
+            <p>Share your happiness with us!</p>
+            <div class="hero-buttons">
+                <a href="#menu" class="btn btn-primary">Order Now</a>
+                <a href="#about" class="btn btn-secondary">Learn More</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Order Type Selection -->
+    <section class="order-type-section">
+        <div class="container">
+            <h2>How would you like your order?</h2>
+            <div class="order-options">
+                <div class="order-option active" data-type="delivery" onclick="selectOrderType('delivery')">
+                    <div class="order-icon">🚚</div>
+                    <h3>Delivery</h3>
+                    <p>Get your pizza delivered to your door</p>
+                    <span class="delivery-time">30-45 min</span>
+                </div>
+                <div class="order-option" data-type="pickup" onclick="selectOrderType('pickup')">
+                    <div class="order-icon">🏃</div>
+                    <h3>Pickup</h3>
+                    <p>Order online and pick up at our store</p>
+                    <span class="delivery-time">15-20 min</span>
+                </div>
+            </div>
+            <div id="order-type-info" class="order-type-info">
+                <p>📍 Delivery available in Tangail city area</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section id="menu" class="menu-section">
+        <div class="container">
+            <h2 class="section-title">Our Menu</h2>
+            <div class="menu-filters">
+                <button class="filter-btn active" onclick="filterMenu('all')">All</button>
+                <button class="filter-btn" onclick="filterMenu('classic')">Classic</button>
+                <button class="filter-btn" onclick="filterMenu('specialty')">Specialty</button>
+                <button class="filter-btn" onclick="filterMenu('veggie')">Vegetarian</button>
+            </div>
+            <div class="menu-grid" id="menu-grid">
+                <!-- Menu items will be populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <div class="about-content">
+                <h2>About Hungry for More</h2>
+                <p>We are Tangail's premier pizza destination, serving fresh, delicious pizzas made with the finest ingredients. Our passion for pizza drives us to create the perfect slice every time.</p>
+
+
+                <div class="features">
+                    <div class="feature">
+                        <div class="feature-icon">🔥</div>
+                        <h3>Fresh Ingredients</h3>
+                        <p>We use only the freshest ingredients daily</p>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">⏰</div>
+                        <h3>Fast Service</h3>
+                        <p>Quick delivery and pickup options</p>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">💯</div>
+                        <h3>Quality Guaranteed</h3>
+                        <p>100% satisfaction guaranteed</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <h2 class="section-title">Contact Us</h2>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <div class="contact-icon">📍</div>
+                    <h3>Location</h3>
+                    <p>Tangail City, Bangladesh</p>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">📞</div>
+                    <h3>Phone</h3>
+                    <p>+880 1234-567890</p>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">⏰</div>
+                    <h3>Hours</h3>
+                    <p>Daily: 11:00 AM - 11:00 PM</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Shopping Cart Sidebar -->
+    <div id="cart-sidebar" class="cart-sidebar">
+        <div class="cart-header">
+            <h2>Your Order</h2>
+            <button class="close-cart" onclick="toggleCart()">×</button>
+        </div>
+        <div class="cart-items" id="cart-items">
+            <p class="empty-cart">Your cart is empty</p>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total: ৳<span id="cart-total">0</span></span>
+            </div>
+            <button class="btn btn-primary checkout-btn" onclick="checkout()">Checkout</button>
+        </div>
+    </div>
+
+    <!-- Cart Overlay -->
+    <div id="cart-overlay" class="cart-overlay" onclick="toggleCart()"></div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Hungry for More. All rights reserved.</p>
+            <p>Tangail, Bangladesh</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
